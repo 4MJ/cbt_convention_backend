@@ -1,4 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { User } from 'src/entities/user.entity';
 
 require('dotenv').config();
 
@@ -44,7 +45,7 @@ class ConfigService {
             username: this.getValue('DATABASE_USERNAME'),
             password: this.getValue('DATABASE_PASSWORD'),
             database:this.getValue('MYSQL_DATABASE'),
-            entities: ['**/*.entity{.ts,.js}'],
+            entities: [User],
             migrationsTableName: 'migration',
             migrations: ['src/migration/*.ts'],
             synchronize:true,
