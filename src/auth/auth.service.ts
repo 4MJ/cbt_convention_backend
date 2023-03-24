@@ -29,12 +29,13 @@ export class AuthService {
     async login(user: any) {
       const loginUser = await this.validateUser(user.email, user.password);
       if(loginUser && !loginUser.message){
-        const payload = { email: user.email, pass: user.password };
+        const payload = { email: user.email, id: loginUser.id };
+        delete loginUser.password;
         return {
           statusCode: 200,
           message: 'Login Sucessfull',
           access_token: this.jwtService.sign(payload),
-          user
+          loginUser
         };
       }else if (loginUser && loginUser.message) {
         return{
@@ -60,4 +61,5 @@ export class AuthService {
       const signup_user = await this.usersService.createUser(user);
       return signup_user;
     }
+    
 }

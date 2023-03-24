@@ -16,4 +16,10 @@ export class User{
 
   @Column()
   password: string
+
+  @Column({
+    type: Boolean,
+    default:false,
+  })
+  isVerified: boolean
 }
